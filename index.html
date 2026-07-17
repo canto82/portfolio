@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diego Cantoni</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b1220;
+    --panel:#101a2e;
+    --panel-2:#0e1830;
+    --text:#e9e6dc;
+    --muted:#8b93a8;
+    --gold:#e8a33d;
+    --gold-soft:#f0c589;
+    --teal:#4fd1c5;
+    --line:rgba(233,230,220,0.10);
+    --line-strong:rgba(233,230,220,0.18);
+    --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  section[id]{scroll-margin-top:76px;}
+  #processo{scroll-margin-top:50px;}
+  #contatti{scroll-margin-top:34px;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(233,230,220,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(233,230,220,0.035) 1px, transparent 1px);
+    background-size:64px 64px;
+    pointer-events:none;
+    z-index:0;
+    mask-image:radial-gradient(ellipse 100% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em; color:var(--text);}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  section{position:relative; z-index:1;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,18,32,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600; font-size:1.05rem;
+    color:var(--text);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{color:var(--gold);}
+  .nav-links{display:flex; gap:32px; align-items:center;}
+  .nav-links a{
+    font-size:0.93rem; color:var(--muted);
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--text);}
+  a.nav-cta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    background:var(--gold);
+    color:#0b1220;
+    padding:9px 18px;
+    border-radius:8px;
+    font-weight:600;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  a.nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(232,163,61,0.25); color:#0b1220;}
+  .menu-btn{display:none; background:none; border:none; color:var(--text); cursor:pointer; padding:6px;}
+  .menu-btn svg{width:24px; height:24px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 80px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    color:var(--teal);
+    letter-spacing:0.02em;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:"//"; color:var(--muted);}
+  .hero h1{
+    font-size:clamp(2.2rem, 4.2vw, 3.4rem);
+    line-height:1.12;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-soft);
+  }
+  .hero p.lead{
+    font-size:1.08rem;
+    color:var(--muted);
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .hero p.lead strong{color:var(--text); font-weight:600;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:0.92rem;
+    background:var(--gold);
+    color:#1a1206;
+    padding:14px 26px;
+    border-radius:9px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease;
+    border:none; cursor:pointer;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 28px rgba(232,163,61,0.28);}
+  .btn-secondary{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.92rem;
+    color:var(--text);
+    padding:14px 22px;
+    border-radius:9px;
+    border:1px solid var(--line-strong);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn-secondary:hover{border-color:var(--teal); background:rgba(79,209,197,0.06);}
+  .hint{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:14px;
+  }
+
+  /* editor window */
+  .editor{
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.55);
+  }
+  .editor-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px;
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+  }
+  .editor-dot{width:10px; height:10px; border-radius:50%;}
+  .editor-dot.r{background:#e8635a;}
+  .editor-dot.y{background:#e8b93a;}
+  .editor-dot.g{background:#4fce6a;}
+  .editor-tab{
+    margin-left:14px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+    background:rgba(233,230,220,0.05);
+    padding:5px 12px;
+    border-radius:6px 6px 0 0;
+  }
+  .editor-body{
+    padding:24px 22px 26px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.86rem;
+    line-height:1.85;
+    overflow-x:auto;
+  }
+  .editor-body .ln{color:#4a5470; display:inline-block; width:22px; user-select:none;}
+  .tok-kw{color:#c792ea;}
+  .tok-var{color:var(--teal);}
+  .tok-key{color:#e9e6dc;}
+  .tok-str{color:var(--gold-soft);}
+  .tok-num{color:#f28fad;}
+  .tok-bool{color:#f28fad;}
+  .tok-punc{color:#6b7590;}
+  .caret{
+    display:inline-block; width:7px; height:1.1em;
+    background:var(--teal); vertical-align:text-bottom;
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{margin-bottom:48px; max-width:56ch;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem);}
+  .section-head p{color:var(--muted); margin-top:14px; font-size:1.02rem;}
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:70px 0; border-top:1px solid var(--line);}
+  .about-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;
+  }
+  .about-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:5.5rem;
+    color:transparent;
+    -webkit-text-stroke:1px var(--line-strong);
+    line-height:1;
+  }
+  .about-copy p{color:var(--muted); margin-bottom:18px; font-size:1.02rem;}
+  .about-copy p strong{color:var(--text); font-weight:600;}
+  .about-copy p:last-child{margin-bottom:0;}
+
+  /* ---------- STACK ---------- */
+  .stack{padding:70px 0; border-top:1px solid var(--line);}
+  .stack-terminal{
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    padding:26px 28px;
+  }
+  .stack-terminal .prompt{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .stack-terminal .prompt .sym{color:var(--teal);}
+  .chip-grid{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    padding:9px 16px;
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    color:var(--text);
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .chip:hover{border-color:var(--gold); color:var(--gold-soft);}
+
+  /* ---------- SERVICES ---------- */
+  .services{padding:70px 0; border-top:1px solid var(--line);}
+  .service-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;
+  }
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 28px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .service-card:hover{border-color:var(--line-strong); transform:translateY(-3px);}
+  .service-card .icon{
+    width:38px; height:38px;
+    border-radius:9px;
+    background:rgba(79,209,197,0.09);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+    color:var(--teal);
+  }
+  .service-card h3{font-size:1.2rem; margin-bottom:10px;}
+  .service-card p{color:var(--muted); font-size:0.96rem;}
+
+  /* ---------- PROCESS ---------- */
+  .process{padding:70px 0; border-top:1px solid var(--line);}
+  .process-list{display:flex; flex-direction:column;}
+  .process-item{
+    display:grid; grid-template-columns:70px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .process-item:first-child{padding-top:0;}
+  .process-item:last-child{border-bottom:none; padding-bottom:0;}
+  .process-num{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--gold);
+    font-size:0.95rem;
+    padding-top:4px;
+  }
+  .process-item h3{font-size:1.15rem; margin-bottom:8px;}
+  .process-item p{color:var(--muted); font-size:0.96rem; max-width:56ch;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{padding:90px 0 100px; border-top:1px solid var(--line);}
+  .contact-panel{
+    background:linear-gradient(160deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line-strong);
+    border-radius:20px;
+    padding:60px 56px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-panel::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(232,163,61,0.10), transparent 70%);
+    pointer-events:none;
+  }
+  .contact-panel h2{font-size:clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom:16px;}
+  .contact-panel p{color:var(--muted); max-width:44ch; margin:0 auto 34px; font-size:1.02rem;}
+  .email-row{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--ink);
+    border:1px solid var(--line-strong);
+    border-radius:11px;
+    padding:8px 8px 8px 22px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .email-row span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.98rem;
+    color:var(--text);
+  }
+  .copy-btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    font-weight:600;
+    background:rgba(79,209,197,0.10);
+    border:1px solid rgba(79,209,197,0.35);
+    color:var(--teal);
+    padding:9px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .copy-btn:hover{border-color:var(--teal); background:rgba(79,209,197,0.18);}
+  .write-btn{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:0.85rem;
+    background:var(--gold);
+    color:#1a1206;
+    padding:9px 18px;
+    border-radius:7px;
+    transition:transform .15s ease;
+  }
+  .write-btn:hover{transform:translateY(-1px);}
+
+  .contact-form{
+    text-align:left;
+    max-width:520px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-bottom:7px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    background:var(--ink);
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    padding:11px 14px;
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:0.96rem;
+    resize:vertical;
+    transition:border-color .15s ease;
+  }
+  .field input:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--teal);
+  }
+  .submit-btn{
+    border:none;
+    cursor:pointer;
+    width:100%;
+    padding:13px 18px;
+    font-size:0.9rem;
+    margin-top:4px;
+  }
+  .form-status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    color:var(--teal);
+    margin-top:12px;
+    min-height:1.2em;
+  }
+  .divider{
+    display:flex; align-items:center; gap:14px;
+    max-width:520px;
+    margin:30px auto 26px;
+    color:var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+  }
+  .divider::before, .divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line-strong);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:32px 0;
+    border-top:1px solid var(--line);
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px;
+  }
+  footer .mono{font-size:0.82rem; color:var(--muted);}
+  footer a:hover{color:var(--teal);}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .caret{animation:none; opacity:1;}
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr; gap:44px;}
+    .about-grid{grid-template-columns:1fr; gap:28px;}
+    .about-mark{font-size:3.4rem;}
+    .service-grid{grid-template-columns:1fr;}
+    .nav-links{
+      position:fixed; top:64px; right:0; left:0;
+      background:var(--ink); border-bottom:1px solid var(--line);
+      flex-direction:column; align-items:flex-start;
+      padding:20px 28px; gap:18px;
+      transform:translateY(-8px);
+      opacity:0; pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+    }
+    .nav-links.open{opacity:1; transform:none; pointer-events:auto;}
+    .menu-btn{display:block;}
+    .nav-cta{display:none;}
+    .nav-links .nav-cta{display:inline-flex;}
+    .contact-panel{padding:44px 24px;}
+    .email-row{padding:14px; flex-direction:column;}
+  }
+  @media (max-width:520px){
+    .hero{padding:56px 0 60px;}
+    .wrap{padding:0 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="logo">diego<span class="dot">.</span>dev</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Apri il menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#stack">Strumenti</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#processo">Come lavoro</a>
+      <a href="#contatti" class="nav-cta">Contattami</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">home</div>
+        <h1>Il tuo sito, costruito bene <em>fin dalla prima riga</em> di codice.</h1>
+        <p class="lead">Mi chiamo Diego. Ho <strong>20 anni</strong> e <strong>sei anni di codice</strong> alle spalle: abbastanza per sapere cosa serve davvero a un sito per funzionare, non solo per sembrare bello.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="#contatti">Scrivimi ora →</a>
+          <a class="btn-secondary" href="#processo">Guarda come lavoro</a>
+        </div>
+        <p class="hint">Risponderò direttamente alla tua email.</p>
+      </div>
+
+      <div class="editor reveal">
+        <div class="editor-bar">
+          <div class="editor-dot r"></div>
+          <div class="editor-dot y"></div>
+          <div class="editor-dot g"></div>
+          <div class="editor-tab">diego.js</div>
+        </div>
+        <div class="editor-body">
+<span class="ln">1</span><span class="tok-kw">const</span> <span class="tok-var">diego</span> <span class="tok-punc">=</span> <span class="tok-punc">{</span>
+<span class="ln">2</span>&nbsp;&nbsp;<span class="tok-key">età</span><span class="tok-punc">:</span> <span class="tok-num">20</span><span class="tok-punc">,</span>
+<span class="ln">3</span>&nbsp;&nbsp;<span class="tok-key">esperienza</span><span class="tok-punc">:</span> <span class="tok-str">"6 anni scrivendo codice"</span><span class="tok-punc">,</span>
+<span class="ln">4</span>&nbsp;&nbsp;<span class="tok-key">stack</span><span class="tok-punc">:</span> <span class="tok-punc">[</span><span class="tok-str">"HTML"</span><span class="tok-punc">,</span> <span class="tok-str">"CSS"</span><span class="tok-punc">,</span> <span class="tok-str">"JS"</span><span class="tok-punc">,</span> <span class="tok-str">"React"</span><span class="tok-punc">,</span> <span class="tok-str">"Node"</span><span class="tok-punc">]</span><span class="tok-punc">,</span>
+<span class="ln">5</span>&nbsp;&nbsp;<span class="tok-key">disponibile</span><span class="tok-punc">:</span> <span class="tok-bool">true</span><span class="tok-punc">,</span>
+<span class="ln">6</span>&nbsp;&nbsp;<span class="tok-key">contatto</span><span class="tok-punc">:</span> <span class="tok-str">"diego.cantoni3108@gmail.com"</span>
+<span class="ln">7</span><span class="tok-punc">}</span><span class="caret"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHI SONO -->
+  <section class="about" id="chi-sono">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="about-mark">D.</div>
+        </div>
+        <div class="about-copy reveal">
+          <div class="eyebrow">chi sono</div>
+          <p>Ho scritto le prime righe di codice a 14 anni, per curiosità. Sei anni dopo quella curiosità è diventata un mestiere: ho costruito siti veri, per esigenze vere, imparando a trasformare un'idea vaga in qualcosa di completo.</p>
+          <p><strong>Sì, ho 20 anni.</strong> Ma è proprio il punto: lavoro con gli strumenti più aggiornati, senza abitudini vecchie che rallentano un progetto, e con la cura di chi ha ancora tutto da dimostrare.</p>
+          <p>Con me parli sempre direttamente con la persona che scrive il codice. Nessun passaggio tra reparti, nessuna comunicazione persa: solo un lavoro seguito dall'inizio alla fine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="stack" id="stack">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">strumenti</div>
+        <h2>Cosa uso per costruire</h2>
+        <p>Tecnologie moderne, stabili e scelte per durare — non la novità del momento, ma quello che funziona davvero.</p>
+      </div>
+      <div class="stack-terminal reveal">
+        <div class="prompt"><span class="sym">$</span> ls stack/</div>
+        <div class="chip-grid">
+          <span class="chip">HTML5</span>
+          <span class="chip">CSS3</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">React</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Git &amp; GitHub</span>
+          <span class="chip">Design responsive</span>
+          <span class="chip">SEO di base</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section class="services" id="servizi">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">servizi</div>
+        <h2>Come posso aiutarti</h2>
+        <p>Non vendo template. Ogni sito parte dalle tue esigenze reali, non da un modello preconfezionato.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card reveal">
+          <div class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+          </div>
+          <h3>Siti vetrina</h3>
+          <p>La prima impressione del tuo brand online. Design pulito, caricamento veloce, pensato per farsi trovare su Google.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </div>
+          <h3>E-commerce</h3>
+          <p>Un negozio che vende anche mentre dormi. Catalogo, pagamenti e ordini gestiti in modo semplice.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>Web app su misura</h3>
+          <p>Hai un'idea che non esiste ancora sul mercato? La costruiamo da zero, intorno alle tue esigenze reali.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+          </div>
+          <h3>Manutenzione &amp; aggiornamenti</h3>
+          <p>Un sito è un progetto che vive nel tempo. Resto disponibile per modifiche, correzioni e piccoli aggiornamenti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="process" id="processo">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">metodo</div>
+        <h2>Come lavoro, passo dopo passo</h2>
+        <p>Un processo chiaro, così sai sempre a che punto è il tuo progetto.</p>
+      </div>
+      <div class="process-list">
+        <div class="process-item reveal">
+          <div class="process-num">01</div>
+          <div>
+            <h3>Ci conosciamo</h3>
+            <p>Una chiamata o qualche email per capire chi sei, cosa fai e cosa ti serve davvero, senza gergo tecnico inutile.</p>
+          </div>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">02</div>
+          <div>
+            <h3>Progetto</h3>
+            <p>Definiamo insieme struttura, contenuti e stile del sito, prima ancora di scrivere una riga di codice.</p>
+          </div>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">03</div>
+          <div>
+            <h3>Sviluppo</h3>
+            <p>Costruisco il sito e ti aggiorno passo dopo passo. Nessuna sorpresa quando il lavoro è finito.</p>
+          </div>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">04</div>
+          <div>
+            <h3>Online</h3>
+            <p>Pubblichiamo il sito e resto disponibile per modifiche, dubbi o imprevisti anche dopo il lancio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="contact" id="contatti">
+    <div class="wrap">
+      <div class="contact-panel reveal">
+        <h2>Parliamo del tuo progetto.</h2>
+        <p>Raccontami cosa ti serve:</p>
+
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/diego.cantoni3108@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Nuovo messaggio dal sito">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="form-row">
+            <div class="field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="Nome" required>
+            </div>
+            <div class="field">
+              <label for="email">La tua email</label>
+              <input type="email" id="email" name="Email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="messaggio">Messaggio</label>
+            <textarea id="messaggio" name="Messaggio" rows="4" required placeholder="Raccontami brevemente di cosa hai bisogno..."></textarea>
+          </div>
+          <button type="submit" class="write-btn submit-btn">Invia messaggio</button>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+
+        <div class="divider"><span>oppure</span></div>
+
+        <div class="email-row">
+          <span id="emailText">diego.cantoni3108@gmail.com</span>
+          <button class="copy-btn" id="copyBtn">Copia</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span></span>
+    <span class="mono">Diego Cantoni - costruisco ciò di cui hai bisogno.</span>
+    <span></span>
+  </div>
+</footer>
+
+<script>
+  // menu mobile
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', false);
+  }));
+
+  // copia email
+  const copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText('diego.cantoni3108@gmail.com').then(() => {
+      const old = copyBtn.textContent;
+      copyBtn.textContent = 'Copiata ✓';
+      setTimeout(() => copyBtn.textContent = old, 1800);
+    });
+  });
+
+  // invio form di contatto
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Invio in corso...';
+    formStatus.textContent = '';
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        formStatus.textContent = 'Messaggio inviato ✓ Ti risponderò al più presto.';
+        contactForm.reset();
+      } else {
+        throw new Error('invio non riuscito');
+      }
+    } catch (err) {
+      formStatus.textContent = 'Qualcosa è andato storto. Scrivimi direttamente a diego.cantoni3108@gmail.com.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Invia messaggio';
+    }
+  });
+
+  // reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
