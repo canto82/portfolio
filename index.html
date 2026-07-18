@@ -629,11 +629,12 @@
       </div>
     </div>
 
-    <form onsubmit="event.preventDefault(); window.location.href='mailto:diego.cantoni3108@gmail.com?subject=Nuovo progetto&body=' + encodeURIComponent(this.messaggio.value);">
+    <form id="contact-form" action="https://formspree.io/f/xeeyggdl" method="POST">
       <input type="text" name="nome" placeholder="Nome" required>
       <input type="email" name="email" placeholder="La tua email" required>
       <textarea name="messaggio" placeholder="Messaggio" required></textarea>
-      <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Invia messaggio</button>
+      <button type="submit" class="btn btn-primary" id="form-submit-btn" style="align-self:flex-start;">Invia messaggio</button>
+      <p id="form-status" style="display:none; font-size:0.88rem; margin-top:4px;"></p>
     </form>
   </div>
 </section>
@@ -652,6 +653,42 @@
       el.style.setProperty('--my', y + 'px');
     });
   });
+
+  var contactForm = document.getElementById('contact-form');
+  if (contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var btn = document.getElementById('form-submit-btn');
+      var status = document.getElementById('form-status');
+      var originalBtnText = btn.textContent;
+
+      btn.textContent = 'Invio in corso...';
+      btn.disabled = true;
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if (response.ok){
+          status.textContent = 'Messaggio inviato ✓ Ti risponderò il prima possibile.';
+          status.style.color = 'var(--accent-2)';
+          status.style.display = 'block';
+          contactForm.reset();
+        } else {
+          throw new Error('Invio non riuscito');
+        }
+      }).catch(function(){
+        status.textContent = 'Qualcosa è andato storto. Scrivimi direttamente a diego.cantoni3108@gmail.com.';
+        status.style.color = '#ff8a80';
+        status.style.display = 'block';
+      }).finally(function(){
+        btn.textContent = originalBtnText;
+        btn.disabled = false;
+      });
+    });
+  }
 </script>
 
 </body>
