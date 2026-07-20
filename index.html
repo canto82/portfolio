@@ -67,8 +67,10 @@
   .logo{
     font-family:'Space Grotesk', sans-serif;
     font-weight:600; font-size:1.05rem;
+    color:var(--accent-2);
   }
   .logo .dot{ color:var(--accent); }
+  .nav-right{ display:flex; align-items:center; gap:32px; }
   .navlinks{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
   .navlinks a{
     text-decoration:none; color:var(--muted); font-size:0.92rem; font-weight:500;
@@ -326,6 +328,31 @@
   }
   input:focus, textarea:focus{ outline:none; border-color:var(--accent-2); }
   textarea{ resize:vertical; min-height:120px; }
+  .consent-row{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:0.85rem; color:var(--muted); line-height:1.5;
+    cursor:pointer;
+  }
+  .consent-row input[type="checkbox"]{
+    flex:0 0 auto; appearance:none; -webkit-appearance:none;
+    width:18px; height:18px; margin-top:2px;
+    border:1px solid var(--border); border-radius:5px;
+    background:var(--bg-panel); cursor:pointer;
+    position:relative; transition:border-color 0.2s ease, background 0.2s ease;
+  }
+  .consent-row input[type="checkbox"]:checked{
+    background:var(--accent-2); border-color:var(--accent-2);
+  }
+  .consent-row input[type="checkbox"]:checked::after{
+    content:"✓"; position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.75rem; font-weight:700; color:#141821;
+  }
+  .consent-row input[type="checkbox"]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px;
+  }
+  .consent-row a{ color:var(--accent-2); text-decoration:underline; text-underline-offset:2px; }
+  .consent-row a:hover{ color:var(--accent); }
   .email-row{
     display:flex; align-items:center; justify-content:space-between; gap:14px;
     margin-top:22px; padding:16px 18px;
@@ -354,6 +381,11 @@
     border-top:1px solid var(--border); padding:32px 0; color:var(--muted); font-size:0.85rem;
     text-align:center;
   }
+  footer .footer-link{
+    color:var(--muted); text-decoration:underline; text-underline-offset:2px;
+    font-size:0.8rem; transition:color 0.2s ease;
+  }
+  footer .footer-link:hover{ color:var(--accent-2); }
 
   /* MOBILE: centratura generale */
   @media (max-width:640px){
@@ -402,15 +434,17 @@
 <header>
   <nav class="wrap">
     <div class="logo">diego<span class="dot">.</span>dev</div>
-    <ul class="navlinks">
-      <li><a href="#chi-sono">Chi sono</a></li>
-      <li><a href="#stack">Strumenti</a></li>
-      <li><a href="#progetti">Progetti</a></li>
-      <li><a href="#servizi">Servizi</a></li>
-      <li><a href="#processo">Come lavoro</a></li>
-      <li><a href="#contatti">Contattami</a></li>
-    </ul>
-    <a href="#contatti" class="btn btn-primary" style="padding:10px 18px; font-size:0.85rem;">Contattami</a>
+    <div class="nav-right">
+      <ul class="navlinks">
+        <li><a href="#chi-sono">Chi sono</a></li>
+        <li><a href="#stack">Strumenti</a></li>
+        <li><a href="#progetti">Progetti</a></li>
+        <li><a href="#servizi">Competenze</a></li>
+        <li><a href="#processo">Come lavoro</a></li>
+        <li><a href="#contatti">Contattami</a></li>
+      </ul>
+      <a href="#contatti" class="btn btn-primary" style="padding:10px 18px; font-size:0.85rem;">Contattami</a>
+    </div>
   </nav>
 </header>
 
@@ -549,26 +583,26 @@
 
 <section id="servizi">
   <div class="wrap">
-    <div class="eyebrow">servizi</div>
-    <h2 style="font-size:2rem; margin-top:6px;">Come posso aiutarti</h2>
-    <p style="color:var(--muted); max-width:58ch; margin-top:14px;">Non vendo template. Ogni sito parte dalle tue esigenze reali, non da un modello preconfezionato.</p>
+    <div class="eyebrow">competenze</div>
+    <h2 style="font-size:2rem; margin-top:6px;">Cosa so fare</h2>
+    <p style="color:var(--muted); max-width:58ch; margin-top:14px;">Le competenze tecniche che ho sviluppato, applicate a progetti concreti: dalla struttura di un'interfaccia fino al codice pronto per essere pubblicato.</p>
 
     <div class="serv-grid">
       <div class="serv-card">
-        <h3>Siti vetrina</h3>
-        <p>La prima impressione del tuo brand online. Design pulito, caricamento veloce, pensato per farsi trovare su Google.</p>
+        <h3>Interfacce e siti vetrina</h3>
+        <p>So progettare interfacce pulite e veloci da caricare, con un'attenzione alla struttura utile anche per una buona indicizzazione su Google.</p>
       </div>
       <div class="serv-card">
-        <h3>E-commerce</h3>
-        <p>Un negozio che vende anche mentre dormi. Catalogo, pagamenti e ordini gestiti in modo semplice.</p>
+        <h3>Logiche e-commerce</h3>
+        <p>Conosco le logiche alla base di un negozio online: catalogo prodotti, carrello e gestione degli ordini.</p>
       </div>
       <div class="serv-card">
         <h3>Web app su misura</h3>
-        <p>Hai un'idea che non esiste ancora sul mercato? La costruiamo da zero, intorno alle tue esigenze reali.</p>
+        <p>So progettare e sviluppare applicazioni web da zero, partendo da esigenze reali e non da template preconfezionati.</p>
       </div>
       <div class="serv-card">
-        <h3>Manutenzione &amp; aggiornamenti</h3>
-        <p>Un sito è un progetto che vive nel tempo. Resto disponibile per modifiche, correzioni e piccoli aggiornamenti.</p>
+        <h3>Codice pulito</h3>
+        <p>Scrivo codice ordinato, consegnato in modo che chi lo riceve possa comprenderlo con facilità.</p>
       </div>
     </div>
   </div>
@@ -606,7 +640,7 @@
         <div class="proc-num">04</div>
         <div>
           <h3>Online</h3>
-          <p>Pubblichiamo il sito e resto disponibile per modifiche, dubbi o imprevisti anche dopo il lancio.</p>
+          <p>Pubblichiamo il sito. Il codice che consegno è pulito e documentato, così hai tutto il necessario per gestirlo o farlo evolvere in autonomia.</p>
         </div>
       </div>
     </div>
@@ -633,6 +667,10 @@
       <input type="text" name="nome" placeholder="Nome" required>
       <input type="email" name="email" placeholder="La tua email" required>
       <textarea name="messaggio" placeholder="Messaggio" required></textarea>
+      <label class="consent-row" for="privacy-consent">
+        <input type="checkbox" id="privacy-consent" name="privacy_consent" required>
+        <span>Ho letto e accetto l'<a href="privacy-policy.html" target="_blank" rel="noopener">informativa sulla privacy</a> e acconsento al trattamento dei miei dati per essere ricontattato/a.</span>
+      </label>
       <button type="submit" class="btn btn-primary" id="form-submit-btn" style="align-self:flex-start;">Invia messaggio</button>
       <p id="form-status" style="display:none; font-size:0.88rem; margin-top:4px;"></p>
     </form>
@@ -640,7 +678,10 @@
 </section>
 
 <footer>
-  <div class="wrap">Diego Cantoni — costruisco ciò di cui hai bisogno.</div>
+  <div class="wrap">Costruisco ciò di cui hai bisogno.</div>
+  <div>‎ </div>
+  <div class="wrap">Portfolio personale. Prestazioni di lavoro autonomo ai sensi dell'art. 2222 del Codice Civile.</div>
+  <div class="wrap"><a href="privacy-policy.html" class="footer-link" target="_blank" rel="noopener">Privacy Policy</a></div>
 </footer>
 
 <script>
@@ -655,6 +696,7 @@
   });
 
   var contactForm = document.getElementById('contact-form');
+  var statusHideTimeout = null;
   if (contactForm){
     contactForm.addEventListener('submit', function(e){
       e.preventDefault();
@@ -662,6 +704,8 @@
       var btn = document.getElementById('form-submit-btn');
       var status = document.getElementById('form-status');
       var originalBtnText = btn.textContent;
+
+      if (statusHideTimeout){ clearTimeout(statusHideTimeout); }
 
       btn.textContent = 'Invio in corso...';
       btn.disabled = true;
@@ -686,6 +730,9 @@
       }).finally(function(){
         btn.textContent = originalBtnText;
         btn.disabled = false;
+        statusHideTimeout = setTimeout(function(){
+          status.style.display = 'none';
+        }, 5000);
       });
     });
   }
