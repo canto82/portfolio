@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Diego Developer</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0f1420;
+    --bg-panel: #161d2e;
+    --bg-panel-2: #1b2438;
+    --border: #2a3348;
+    --text: #e7e9ee;
+    --muted: #8f9bb3;
+    --accent: #ffb454;
+    --accent-2: #6ee7c7;
+    --radius: 14px;
+    --maxw: 760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(255,180,84,0.08), transparent 60%),
+      radial-gradient(700px 500px at -10% 20%, rgba(110,231,199,0.06), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    letter-spacing:-0.02em;
+  }
+  a{ color:var(--accent-2); text-decoration:underline; text-underline-offset:2px; }
+  a:hover{ color:var(--accent); }
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:6px; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+  ::selection{ background:var(--accent); color:#141821; }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(15,20,32,0.75);
+    border-bottom:1px solid var(--border);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600; font-size:1.05rem;
+    text-decoration:none;
+    color:var(--accent-2);
+  }
+  .logo .dot{ color:var(--accent); }
+  .back-link{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem; color:var(--muted); text-decoration:none;
+  }
+  .back-link:hover{ color:var(--accent-2); }
+
+  main{ padding:64px 0 96px; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--accent-2);
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:lowercase;
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:8px; height:8px; border-radius:50%;
+    background:var(--accent-2);
+    box-shadow:0 0 10px var(--accent-2);
+  }
+  h1{ font-size:clamp(1.7rem, 4vw, 2.3rem); }
+  .updated{ color:var(--muted); font-size:0.85rem; margin-top:14px; }
+
+  .panel{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px 28px;
+    margin:22px 0;
+  }
+  .panel p{ margin:0; color:var(--text); }
+
+  article{ margin-top:44px; }
+  article section{ margin-bottom:38px; }
+  article h2{
+    font-size:1.2rem;
+    margin-bottom:14px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+  }
+  article p{ color:var(--muted); margin:0 0 14px; }
+  article p strong{ color:var(--text); }
+  article ul{ color:var(--muted); margin:0 0 14px; padding-left:20px; }
+  article li{ margin-bottom:8px; }
+  article li strong{ color:var(--text); }
+  table.rights{
+    width:100%; border-collapse:collapse; margin-top:8px; font-size:0.92rem;
+  }
+  table.rights th, table.rights td{
+    text-align:left; padding:10px 12px; border:1px solid var(--border); color:var(--muted);
+  }
+  table.rights th{ color:var(--text); font-family:'JetBrains Mono', monospace; font-size:0.78rem; }
+
+  footer{
+    border-top:1px solid var(--border); padding:32px 0; color:var(--muted); font-size:0.85rem;
+    text-align:center;
+  }
+  footer a{ font-size:0.8rem; }
+
+  @media (max-width:640px){
+    main{ padding:48px 0 72px; }
+    .panel{ padding:20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">diego<span class="dot">.</span>dev</a>
+    <a href="index.html" class="back-link">← Torna al sito</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="eyebrow">informativa</div>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Ultimo aggiornamento: 20 luglio 2026</p>
+
+    <div class="panel">
+      <p>Questa informativa descrive come vengono trattati i dati personali di chi visita questo sito o utilizza il modulo di contatto, ai sensi del Regolamento (UE) 2016/679 ("GDPR").</p>
+    </div>
+
+    <article>
+      <section>
+        <h2>1. Titolare del trattamento</h2>
+        <p>Il titolare del trattamento dei dati è <strong>Diego Cantoni</strong>, contattabile all'indirizzo email <a href="mailto:diego.cantoni3108@gmail.com">diego.cantoni3108@gmail.com</a>.</p>
+        <p>Questo sito è un portfolio personale. Le eventuali collaborazioni sono svolte come prestazioni di lavoro autonomo occasionale ai sensi dell'art. 2222 del Codice Civile.</p>
+      </section>
+
+      <section>
+        <h2>2. Quali dati vengono raccolti</h2>
+        <p>Attraverso il modulo di contatto presente nella sezione "Contatti" vengono raccolti esclusivamente i dati forniti volontariamente dall'utente:</p>
+        <ul>
+          <li><strong>Nome</strong>, indicato nel campo dedicato del modulo;</li>
+          <li><strong>Indirizzo email</strong>, necessario per poter rispondere alla richiesta;</li>
+          <li><strong>Contenuto del messaggio</strong>, ed eventuali altre informazioni che l'utente decide di includere.</li>
+        </ul>
+        <p>Il sito non utilizza cookie di profilazione né strumenti di tracciamento pubblicitario. Vengono caricati unicamente i font tramite Google Fonts e, nella sezione "Progetti", alcune anteprime (iframe) di demo ospitate su GitHub Pages: il caricamento di queste risorse esterne può comportare, da parte dei rispettivi fornitori, la raccolta di dati tecnici (es. indirizzo IP) secondo le loro autonome informative privacy.</p>
+      </section>
+
+      <section>
+        <h2>3. Finalità e base giuridica del trattamento</h2>
+        <p>I dati inseriti nel modulo di contatto sono trattati al solo fine di <strong>rispondere alle richieste inviate</strong> dall'utente. La base giuridica del trattamento è il <strong>consenso</strong> espresso dall'utente al momento dell'invio del modulo, tramite l'apposita casella di spunta.</p>
+        <p>I dati non vengono utilizzati per finalità di marketing, non vengono ceduti a terzi per scopi commerciali e non sono oggetto di processi decisionali automatizzati o di profilazione.</p>
+      </section>
+
+      <section>
+        <h2>4. Come vengono trattati i dati</h2>
+        <p>L'invio del modulo di contatto è gestito tramite il servizio esterno <strong>Formspree</strong> (Formspree, Inc.), che riceve e inoltra i messaggi all'indirizzo email del titolare. Formspree agisce come responsabile del trattamento e può comportare un trasferimento di dati verso server situati negli Stati Uniti; il servizio dichiara di adottare garanzie adeguate per la protezione dei dati conformi al GDPR. Per maggiori informazioni si rimanda all'informativa privacy di Formspree, consultabile sul sito ufficiale del fornitore.</p>
+        <p>I dati non vengono trattati con altri strumenti automatizzati oltre a quelli sopra indicati.</p>
+      </section>
+
+      <section>
+        <h2>5. Periodo di conservazione</h2>
+        <p>I dati raccolti tramite il modulo di contatto vengono conservati per il tempo strettamente necessario a gestire la richiesta e l'eventuale corrispondenza successiva, e comunque non oltre <strong>12 mesi</strong> dall'ultimo contatto, salvo obblighi di legge che richiedano una conservazione più lunga.</p>
+      </section>
+
+      <section>
+        <h2>6. Diritti dell'interessato</h2>
+        <p>In qualità di interessato, hai il diritto di esercitare in qualsiasi momento le prerogative previste dagli articoli 15-22 del GDPR, scrivendo a <a href="mailto:diego.cantoni3108@gmail.com">diego.cantoni3108@gmail.com</a>:</p>
+        <table class="rights">
+          <tr><th>Diritto</th><th>Cosa significa</th></tr>
+          <tr><td>Accesso</td><td>Ottenere conferma dell'esistenza dei tuoi dati e riceverne una copia</td></tr>
+          <tr><td>Rettifica</td><td>Correggere dati inesatti o incompleti</td></tr>
+          <tr><td>Cancellazione</td><td>Richiedere la rimozione dei tuoi dati ("diritto all'oblio")</td></tr>
+          <tr><td>Limitazione</td><td>Limitare le modalità con cui i tuoi dati vengono trattati</td></tr>
+          <tr><td>Portabilità</td><td>Ricevere i tuoi dati in un formato strutturato e leggibile</td></tr>
+          <tr><td>Opposizione</td><td>Opporti in qualsiasi momento al trattamento</td></tr>
+          <tr><td>Revoca del consenso</td><td>Revocare il consenso dato, senza pregiudicare la liceità del trattamento precedente</td></tr>
+        </table>
+        <p style="margin-top:14px;">Hai inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali qualora ritenga che il trattamento violi la normativa vigente.</p>
+      </section>
+
+      <section>
+        <h2>7. Modifiche a questa informativa</h2>
+        <p>Questa informativa può essere aggiornata nel tempo, ad esempio in seguito a modifiche del sito o della normativa applicabile. La data di ultimo aggiornamento è indicata in cima alla pagina.</p>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html">← Torna al sito</a>
+  </div>
+</footer>
+
+</body>
+</html>
